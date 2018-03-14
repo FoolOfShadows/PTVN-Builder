@@ -8,19 +8,33 @@
 
 /* Begin PBXBuildFile section */
 		796150BC205842EC00EC8D08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150BB205842EC00EC8D08 /* AppDelegate.swift */; };
-		796150BE205842EC00EC8D08 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150BD205842EC00EC8D08 /* ViewController.swift */; };
 		796150C0205842ED00EC8D08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 796150BF205842ED00EC8D08 /* Assets.xcassets */; };
 		796150C3205842ED00EC8D08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796150C1205842ED00EC8D08 /* Main.storyboard */; };
+		796150D0205845EB00EC8D08 /* Ellipsis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 796150CF205845EB00EC8D08 /* Ellipsis.jpg */; };
+		796150D2205845F200EC8D08 /* PF Summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 796150D1205845F200EC8D08 /* PF Summary.png */; };
+		796150D42058464100EC8D08 /* BuilderInterfaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150D32058464100EC8D08 /* BuilderInterfaceVC.swift */; };
+		796150D82058469100EC8D08 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150D72058469100EC8D08 /* StringExtensions.swift */; };
+		796150DA205846A200EC8D08 /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150D9205846A200EC8D08 /* GeneralExtensions.swift */; };
+		796150DC205846B300EC8D08 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150DB205846B300EC8D08 /* Constants.swift */; };
+		796150DE20584A5500EC8D08 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150DD20584A5500EC8D08 /* DateExtensions.swift */; };
+		796150E020584FD700EC8D08 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150DF20584FD700EC8D08 /* ChartData.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		796150B8205842EC00EC8D08 /* PTVN Builder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PTVN Builder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		796150BB205842EC00EC8D08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		796150BD205842EC00EC8D08 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		796150BF205842ED00EC8D08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		796150C2205842ED00EC8D08 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		796150C4205842ED00EC8D08 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		796150C5205842ED00EC8D08 /* PTVN_Builder.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = PTVN_Builder.entitlements; sourceTree = "<group>"; };
+		796150CF205845EB00EC8D08 /* Ellipsis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = Ellipsis.jpg; path = "../../Chart Parsing Swift4/Chart Parsing/Ellipsis.jpg"; sourceTree = "<group>"; };
+		796150D1205845F200EC8D08 /* PF Summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "PF Summary.png"; path = "../../Chart Parsing Swift4/Chart Parsing/PF Summary.png"; sourceTree = "<group>"; };
+		796150D32058464100EC8D08 /* BuilderInterfaceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderInterfaceVC.swift; sourceTree = "<group>"; };
+		796150D72058469100EC8D08 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = "../../Physical Exam 2/Physical Exam 2/StringExtensions.swift"; sourceTree = "<group>"; };
+		796150D9205846A200EC8D08 /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneralExtensions.swift; path = "../../Physical Exam 2/Physical Exam 2/GeneralExtensions.swift"; sourceTree = "<group>"; };
+		796150DB205846B300EC8D08 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "../../Chart Parsing Swift4/Chart Parsing/Constants.swift"; sourceTree = "<group>"; };
+		796150DD20584A5500EC8D08 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
+		796150DF20584FD700EC8D08 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,11 +68,18 @@
 			isa = PBXGroup;
 			children = (
 				796150BB205842EC00EC8D08 /* AppDelegate.swift */,
-				796150BD205842EC00EC8D08 /* ViewController.swift */,
+				796150D32058464100EC8D08 /* BuilderInterfaceVC.swift */,
+				796150DF20584FD700EC8D08 /* ChartData.swift */,
+				796150DB205846B300EC8D08 /* Constants.swift */,
 				796150BF205842ED00EC8D08 /* Assets.xcassets */,
 				796150C1205842ED00EC8D08 /* Main.storyboard */,
 				796150C4205842ED00EC8D08 /* Info.plist */,
 				796150C5205842ED00EC8D08 /* PTVN_Builder.entitlements */,
+				796150D1205845F200EC8D08 /* PF Summary.png */,
+				796150CF205845EB00EC8D08 /* Ellipsis.jpg */,
+				796150D9205846A200EC8D08 /* GeneralExtensions.swift */,
+				796150D72058469100EC8D08 /* StringExtensions.swift */,
+				796150DD20584A5500EC8D08 /* DateExtensions.swift */,
 			);
 			path = "PTVN Builder";
 			sourceTree = "<group>";
@@ -95,6 +116,11 @@
 				TargetAttributes = {
 					796150B7205842EC00EC8D08 = {
 						CreatedOnToolsVersion = 9.3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -121,6 +147,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				796150D0205845EB00EC8D08 /* Ellipsis.jpg in Resources */,
+				796150D2205845F200EC8D08 /* PF Summary.png in Resources */,
 				796150C0205842ED00EC8D08 /* Assets.xcassets in Resources */,
 				796150C3205842ED00EC8D08 /* Main.storyboard in Resources */,
 			);
@@ -133,8 +161,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				796150BE205842EC00EC8D08 /* ViewController.swift in Sources */,
+				796150DE20584A5500EC8D08 /* DateExtensions.swift in Sources */,
+				796150DA205846A200EC8D08 /* GeneralExtensions.swift in Sources */,
+				796150D82058469100EC8D08 /* StringExtensions.swift in Sources */,
+				796150D42058464100EC8D08 /* BuilderInterfaceVC.swift in Sources */,
 				796150BC205842EC00EC8D08 /* AppDelegate.swift in Sources */,
+				796150E020584FD700EC8D08 /* ChartData.swift in Sources */,
+				796150DC205846B300EC8D08 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,7 +302,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "PTVN Builder/PTVN_Builder.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
@@ -288,7 +320,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = "PTVN Builder/PTVN_Builder.entitlements";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VY6BVT84SC;
