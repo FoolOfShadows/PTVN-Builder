@@ -20,6 +20,7 @@ struct ChartData {
     var nutritionalHistory: String { var theRegex = ""
                                     if chartData.contains("Developmental history") {
                                     theRegex = Regexes.nutrition1.rawValue
+                                        print("Found Dev Hx")
                                     } else { theRegex = Regexes.nutrition2.rawValue}
                                     return chartData.simpleRegExMatch(theRegex).cleanTheTextOf(nutritionBadBits)}
     var socialHistory: String {return chartData.simpleRegExMatch(Regexes.social.rawValue).cleanTheTextOf(socialBadBits)}
@@ -70,7 +71,7 @@ struct ChartData {
     private func cleanTheSections(_ theSection:String, badBits:[String]) -> String {
         //var cleanedText = theSection.removeWhiteSpace()
         let textArray = theSection.split(separator: "\n")
-        print(textArray)
+        //print(textArray)
         var cleanedText = textArray.filter {$0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines) != ""}.joined(separator: "\n")
         
         for theBit in badBits {

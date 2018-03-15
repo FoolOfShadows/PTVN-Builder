@@ -78,13 +78,13 @@ class BuilderInterfaceVC: NSViewController {
         labelDateFormatter.dateFormat = "yyMMdd"
         let labelVisitDate = labelDateFormatter.string(from: visitDate)
         
-        let finalResults = "\(currentData.ptName)\nDOB:  \(currentData.ptDOB)     Age: \(currentData.ptAge)\nDate: \(internalVisitDate)\n\n\(visitBoilerplateText)CURRENT MEDICATIONS:\n\(currentData.currentMeds)\n\nALLERGIES:\n\(currentData.allergies)\n\nPREVENTIVE CARE:\n\(currentData.preventiveCare)\n\nPAST MEDICAL HISTORY:\n\(medKey)\(currentData.pmh)\n\nPAST SURGICAL HISTORY:\n\(currentData.psh)\n\nNUTRITION:\n\(currentData.nutritionalHistory)\n\nSOCIAL HISTORY:\n\(currentData.socialHistory)\n\nFAMILY HISTORY:\n\(currentData.familyHistory)\n\nDIAGNOSES:\n\(currentData.diagnoses)"
+        let finalResults = "\(currentData.ptName)\nDOB:  \(currentData.ptDOB)     Age: \(currentData.ptAge)\nDate: \(internalVisitDate)\n\n\(visitBoilerplateText)CURRENT MEDICATIONS:\n\(medKey)\(currentData.currentMeds)\n\nALLERGIES:\n\(currentData.allergies)\n\nPREVENTIVE CARE:\n\(currentData.preventiveCare)\n\nPAST MEDICAL HISTORY:\n\(currentData.pmh)\n\nPAST SURGICAL HISTORY:\n\(currentData.psh)\n\nNUTRITION:\n\(currentData.nutritionalHistory)\n\nSOCIAL HISTORY:\n\(currentData.socialHistory)\n\nFAMILY HISTORY:\n\(currentData.familyHistory)\n\nDIAGNOSES:\n\(currentData.diagnoses)"
         
-        print(currentData.diagnoses)
+        //print(currentData.diagnoses)
         finalResults.copyToPasteboard()
         
         let fileName = "\(visitTimeView.stringValue) \(getFileLabellingName(currentData.ptName)) PTVN \(labelVisitDate).txt"
-        print(fileName)
+        //print(fileName)
         //Creates a file with the final output on the desktop
         let ptvnData = finalResults.data(using: String.Encoding.utf8)
         let newFileManager = FileManager.default
