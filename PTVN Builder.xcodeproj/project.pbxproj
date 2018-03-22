@@ -16,7 +16,6 @@
 		796150D42058464100EC8D08 /* BuilderInterfaceVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150D32058464100EC8D08 /* BuilderInterfaceVC.swift */; };
 		796150D82058469100EC8D08 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150D72058469100EC8D08 /* StringExtensions.swift */; };
 		796150DA205846A200EC8D08 /* GeneralExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150D9205846A200EC8D08 /* GeneralExtensions.swift */; };
-		796150DE20584A5500EC8D08 /* DateExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150DD20584A5500EC8D08 /* DateExtensions.swift */; };
 		796150E020584FD700EC8D08 /* ChartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150DF20584FD700EC8D08 /* ChartData.swift */; };
 /* End PBXBuildFile section */
 
@@ -33,7 +32,6 @@
 		796150D32058464100EC8D08 /* BuilderInterfaceVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BuilderInterfaceVC.swift; sourceTree = "<group>"; };
 		796150D72058469100EC8D08 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringExtensions.swift; path = "../../Physical Exam 2/Physical Exam 2/StringExtensions.swift"; sourceTree = "<group>"; };
 		796150D9205846A200EC8D08 /* GeneralExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = GeneralExtensions.swift; path = "../../Physical Exam 2/Physical Exam 2/GeneralExtensions.swift"; sourceTree = "<group>"; };
-		796150DD20584A5500EC8D08 /* DateExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions.swift; sourceTree = "<group>"; };
 		796150DF20584FD700EC8D08 /* ChartData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartData.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -79,7 +77,6 @@
 				796150CF205845EB00EC8D08 /* Ellipsis.jpg */,
 				796150D9205846A200EC8D08 /* GeneralExtensions.swift */,
 				796150D72058469100EC8D08 /* StringExtensions.swift */,
-				796150DD20584A5500EC8D08 /* DateExtensions.swift */,
 			);
 			path = "PTVN Builder";
 			sourceTree = "<group>";
@@ -161,7 +158,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				796150DE20584A5500EC8D08 /* DateExtensions.swift in Sources */,
 				796150DA205846A200EC8D08 /* GeneralExtensions.swift in Sources */,
 				791DBFB4205ABC6200974F57 /* Constants.swift in Sources */,
 				796150D82058469100EC8D08 /* StringExtensions.swift in Sources */,
@@ -310,6 +306,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fulgentwake.PTVN-Builder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
@@ -328,6 +325,7 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.fulgentwake.PTVN-Builder";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
