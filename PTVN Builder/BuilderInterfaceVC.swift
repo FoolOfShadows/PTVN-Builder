@@ -93,3 +93,43 @@ class BuilderInterfaceVC: NSViewController {
     }
 
 }
+
+
+enum SectionDelimiters:String {
+    case patientStart = "#PATIENTDATA"
+    case patientEnd = "PATIENTDATA#"
+    case ccStart = "#CC"
+    case ccEnd = "CC#"
+    case problemsStart = "#PROBLEMS"
+    case problemEnd = "PROBLEMS#"
+    case subjectiveStart = "#SUBJECTIVE"
+    case subjectiveEnd = "SUBJECTIVE#"
+    case newPMHStart = "#NEWPMH"
+    case newPMHEnd = "NEWPMH#"
+    case assessmentStart = "#ASSESSMENT"
+    case assessmentEND = "ASSESSMENT#"
+    case planStart = "#PLAN"
+    case planEnd = "PLAN#"
+    case objectiveStart = "#OBJECTIVE"
+    case objectiveEnd = "OBJECTIVE#"
+    case medStart = "#MEDICATIONS"
+    case medEnd = "MEDICATION#"
+    case allergiesStart = "#ALLERGIES"
+    case allergiesEnd = "ALLERGIES#"
+    case preventiveStart = "#PREVENTIVE"
+    case preventiveEnd = "PREVENTIVE#"
+    case pmhStart = "#PMH"
+    case pmhEnd = "PMH#"
+    case pshStart = "#PSH"
+    case pshEnd = "PSH#"
+    case nutritionStart = "#NUTRITION"
+    case nutritionEnd = "NUTRITION#"
+    case socialStart = "#SOCIAL"
+    case socialEnd = "SOCIAL#"
+    case familyStart = "#FAMILY"
+    case familyEnd = "FAMILY#"
+    case diagnosisStart = "#DIAGNOSIS"
+    case diagnosisEnd = "DIAGNOSIS#"
+    case otherStart = "#OTHER"
+    case otherEnd = "OTHER#"
+}
