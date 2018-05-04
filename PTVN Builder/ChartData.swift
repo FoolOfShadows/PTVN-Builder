@@ -37,7 +37,7 @@ struct ChartData {
         case nutrition2 = "(?s)(Nutrition history).*((?<=)Allergies\\n)"
         case diagnoses = "(?s)Diagnoses.*Social history*?\\s(?=\\nSmoking status*?\\s)"
         case medications = "(?s)\\nMedications*\\s+?\\n.*Encounters"
-        case allergies = "(?s)(\nAllergies\n).*(Medications)"
+        case allergies = "(?s)(\\nAllergies\\n).*(\\nMedications)"
         case pmh = "(?s)(Ongoing medical problems).*(Family health history)"
         case psh = "(?s)(Major events).*(Ongoing medical problems)"
         case preventive = "(?s)(Preventive care).*((?<=)Social history)"

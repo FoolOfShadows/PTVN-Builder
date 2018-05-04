@@ -7,12 +7,14 @@
 //
 
 import Cocoa
+import Quartz
 
 class BuilderInterfaceVC: NSViewController {
 
     @IBOutlet weak var visitTimeView: NSTextField!
     @IBOutlet weak var visitDayView: NSPopUpButton!
     
+    //let previewController = QLPreviewPanel()
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
@@ -79,11 +81,21 @@ class BuilderInterfaceVC: NSViewController {
         let labelVisitDate = labelDateFormatter.string(from: visitDate)
         
         let finalResults = """
-        \(SectionDelimiters.patientStart.rawValue)
-        Name: \(currentData.ptName)
-        DOB: \(currentData.ptDOB)
-        Age: \(currentData.ptAge)
-        \(SectionDelimiters.patientEnd.rawValue)
+        \(SectionDelimiters.patientNameStart.rawValue)
+        \(currentData.ptName)
+        \(SectionDelimiters.patientNameEnd.rawValue)
+        
+        \(SectionDelimiters.patientDOBStart.rawValue)
+        \(currentData.ptDOB)
+        \(SectionDelimiters.patientDOBEnd.rawValue)
+        
+        \(SectionDelimiters.patientAgeStart.rawValue)
+        \(currentData.ptAge)
+        \(SectionDelimiters.patientAgeEnd.rawValue)
+        
+        \(SectionDelimiters.visitDateStart.rawValue)
+        \(internalVisitDate)
+        \(SectionDelimiters.visitDateEnd.rawValue)
         
         \(SectionDelimiters.medStart.rawValue)
         \(currentData.currentMeds)
@@ -121,29 +133,51 @@ class BuilderInterfaceVC: NSViewController {
         \(currentData.diagnoses)
         \(SectionDelimiters.diagnosisEnd.rawValue)
         
-        \(SectionDelimiters.otherStart.rawValue)
-         Visit Date: \(internalVisitDate)
-        \(SectionDelimiters.otherEnd.rawValue)
+        \(SectionDelimiters.rosStart.rawValue)
+        
+        \(SectionDelimiters.rosEnd.rawValue)
+        
+        \(SectionDelimiters.assessmentStart.rawValue)
+        
+        \(SectionDelimiters.assessmentEND.rawValue)
+        
+        \(SectionDelimiters.objectiveStart.rawValue)
+        
+        \(SectionDelimiters.objectiveEnd.rawValue)
+        
+        \(SectionDelimiters.subjectiveStart.rawValue)
+        
+        \(SectionDelimiters.subjectiveEnd.rawValue)
+        
+        \(SectionDelimiters.planStart.rawValue)
+        
+        \(SectionDelimiters.planEnd.rawValue)
         """
         
         //print(currentData.diagnoses)
         finalResults.copyToPasteboard()
         
-        let fileName = "\(visitTimeView.stringValue) \(getFileLabellingName(currentData.ptName)) PTVN \(labelVisitDate).ptvn"
+        let fileName = "\(visitTimeView.stringValue) \(getFileLabellingName(currentData.ptName)) PTVN \(labelVisitDate).txt"
         //print(fileName)
         //Creates a file with the final output on the desktop
         let ptvnData = finalResults.data(using: String.Encoding.utf8)
         let newFileManager = FileManager.default
         let savePath = NSHomeDirectory()
         newFileManager.createFile(atPath: "\(savePath)/\(saveLocation)/\(fileName)", contents: ptvnData, attributes: nil)
+        
+        
     }
 
 }
 
 
 enum SectionDelimiters:String {
-    case patientStart = "#PATIENTDATA"
-    case patientEnd = "PATIENTDATA#"
+    case patientNameStart = "#PATIENTNAME"
+    case patientNameEnd = "PATIENTNAME#"
+    case patientDOBStart = "#PATIENTDOB"
+    case patientDOBEnd = "PATIENTDOB#"
+    case patientAgeStart = "#PATIENTAGE"
+    case patientAgeEnd = "PATIENTAGE#"
     case ccStart = "#CC"
     case ccEnd = "CC#"
     case problemsStart = "#PROBLEMS"
@@ -159,7 +193,7 @@ enum SectionDelimiters:String {
     case objectiveStart = "#OBJECTIVE"
     case objectiveEnd = "OBJECTIVE#"
     case medStart = "#MEDICATIONS"
-    case medEnd = "MEDICATION#"
+    case medEnd = "MEDICATIONS#"
     case allergiesStart = "#ALLERGIES"
     case allergiesEnd = "ALLERGIES#"
     case preventiveStart = "#PREVENTIVE"
@@ -176,6 +210,10 @@ enum SectionDelimiters:String {
     case familyEnd = "FAMILY#"
     case diagnosisStart = "#DIAGNOSIS"
     case diagnosisEnd = "DIAGNOSIS#"
+    case rosStart = "#ROS"
+    case rosEnd = "ROS#"
+    case visitDateStart = "#VISITDATE"
+    case visitDateEnd = "VISITDATE#"
     case otherStart = "#OTHER"
     case otherEnd = "OTHER#"
 }
