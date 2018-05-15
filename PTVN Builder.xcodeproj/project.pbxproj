@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		791DBFB4205ABC6200974F57 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 791DBFB3205ABC6200974F57 /* Constants.swift */; };
+		7933CC3820AB50E200178BF3 /* URLExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7933CC3720AB50E200178BF3 /* URLExtensions.swift */; };
+		7933CC3A20AB575E00178BF3 /* ViewExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7933CC3920AB575E00178BF3 /* ViewExtensions.swift */; };
 		796150BC205842EC00EC8D08 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 796150BB205842EC00EC8D08 /* AppDelegate.swift */; };
 		796150C0205842ED00EC8D08 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 796150BF205842ED00EC8D08 /* Assets.xcassets */; };
 		796150C3205842ED00EC8D08 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 796150C1205842ED00EC8D08 /* Main.storyboard */; };
@@ -21,6 +23,8 @@
 
 /* Begin PBXFileReference section */
 		791DBFB3205ABC6200974F57 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "../../Chart Parsing Swift4/Chart Parsing/Constants.swift"; sourceTree = "<group>"; };
+		7933CC3720AB50E200178BF3 /* URLExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLExtensions.swift; sourceTree = "<group>"; };
+		7933CC3920AB575E00178BF3 /* ViewExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewExtensions.swift; sourceTree = "<group>"; };
 		796150B8205842EC00EC8D08 /* PTVN Builder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "PTVN Builder.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		796150BB205842EC00EC8D08 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		796150BF205842ED00EC8D08 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -77,6 +81,8 @@
 				796150CF205845EB00EC8D08 /* Ellipsis.jpg */,
 				796150D9205846A200EC8D08 /* GeneralExtensions.swift */,
 				796150D72058469100EC8D08 /* StringExtensions.swift */,
+				7933CC3720AB50E200178BF3 /* URLExtensions.swift */,
+				7933CC3920AB575E00178BF3 /* ViewExtensions.swift */,
 			);
 			path = "PTVN Builder";
 			sourceTree = "<group>";
@@ -158,7 +164,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7933CC3820AB50E200178BF3 /* URLExtensions.swift in Sources */,
 				796150DA205846A200EC8D08 /* GeneralExtensions.swift in Sources */,
+				7933CC3A20AB575E00178BF3 /* ViewExtensions.swift in Sources */,
 				791DBFB4205ABC6200974F57 /* Constants.swift in Sources */,
 				796150D82058469100EC8D08 /* StringExtensions.swift in Sources */,
 				796150D42058464100EC8D08 /* BuilderInterfaceVC.swift in Sources */,

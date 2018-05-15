@@ -8,12 +8,15 @@
 
 import Foundation
 
+//Struct to hold the data from the file
 struct ChartData {
+    //This string will be populated later with data on the clipboard pulled from PF
     var chartData = String()
+    
+    //Use closures to populate the relevant vars with the desired data copied from PF
     var ptName: String {return nameAgeDOB(chartData).0}
     var ptDOB: String {return nameAgeDOB(chartData).2}
     var ptAge: String {return nameAgeDOB(chartData).1}
-    //var fileName: String {return ""}
     var currentMeds: String {return chartData.simpleRegExMatch(Regexes.medications.rawValue).cleanTheTextOf(medBadBits).addCharacterToBeginningOfEachLine("- ")}
     var diagnoses: String {return chartData.simpleRegExMatch(Regexes.diagnoses.rawValue).cleanTheTextOf(dxBadBits)}
     var allergies: String {return chartData.simpleRegExMatch(Regexes.allergies.rawValue).cleanTheTextOf(basicAllergyBadBits)}
@@ -28,7 +31,10 @@ struct ChartData {
     var preventiveCare: String {return chartData.simpleRegExMatch(Regexes.preventive.rawValue).cleanTheTextOf(preventiveBadBits)}
     var psh: String {return chartData.simpleRegExMatch(Regexes.psh.rawValue).cleanTheTextOf(pshBadBits)}
     var pmh: String {return chartData.simpleRegExMatch(Regexes.pmh.rawValue).cleanTheTextOf(pmhBadBits)}
+    var lastCharges: String {return chartData.simpleRegExMatch(Regexes.lastCharge.rawValue).cleanTheTextOf(lastChargeBadBits)}
+    var lastAppointment:String {return getLastAptInfoFrom(chartData)}
     
+    //The regular expressions used to define the desired sections of the text
     enum Regexes:String {
         case social = "(?s)(Social history).*((?<=)Past medical history)"
         case family1 = "(?s)(Family health history).*(Preventive care)"
@@ -41,6 +47,7 @@ struct ChartData {
         case pmh = "(?s)(Ongoing medical problems).*(Family health history)"
         case psh = "(?s)(Major events).*(Ongoing medical problems)"
         case preventive = "(?s)(Preventive care).*((?<=)Social history)"
+        case lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
     }
     
     //Get the name, age, and DOB from the text
@@ -80,11 +87,46 @@ struct ChartData {
         cleanedText = cleanedText.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         return cleanedText
     }
+    
+    //Get the date of the patients last appointment
+    private func getLastAptInfoFrom(_ theText: String) -> String {
+        guard let baseSection = theText.findRegexMatchFrom("Encounters", to: "Appointments") else {return ""}
+        //print(baseSection)
+        guard let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages") else {return ""}
+        //print(encountersSection)
+        let activeEncounters = encountersSection.ranges(of: "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)", options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded")}
+        print(activeEncounters)
+        if activeEncounters.count > 0 {
+            let date = activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
+            let components = date.components(separatedBy: "/")
+            let month = components[0]
+            let day = components[1]
+            let year = components[2].suffix(2)
+            return "\(year)\(month)\(day)"
+        } else {
+            return "Last apt not found"
+        }
+    }
 }
 
-//Parse a string containing a full name into it's components and returns
-//the version of the name we use to label files
-func getFileLabellingName(_ name: String) -> String {
+//A struct to get and hold the assessment data from the patient last note
+struct OldNoteData {
+    var fileURL:URL
+    private var theText:String { return fileURL.getTextFromFile() }
+    private let lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
+    var oldAssessment:String { return theText.simpleRegExMatch(lastCharge).cleanTheTextOf(lastChargeBadBits) }
+}
+
+//Choices to pass into the getFileLabellingNameFrom function
+//for how you want the name returned
+enum FileLabelType {
+    case full
+    case firstLast
+}
+
+//Using the name line from the PTVN, break it into it's components
+//then return it in the format requested per the FileLabelType enum
+func getFileLabellingNameFrom(_ name: String, ofType type: FileLabelType) -> String {
     var fileLabellingName = String()
     var ptFirstName = ""
     var ptLastName = ""
@@ -130,8 +172,11 @@ func getFileLabellingName(_ name: String) -> String {
     } else {
         ptMiddleName = nameComponents[1]
     }
-    
+    if type == FileLabelType.full {
     fileLabellingName = "\(ptLastName)\(ptFirstName)\(ptMiddleName)\(ptExtraName)"
+    } else if type == FileLabelType.firstLast {
+        fileLabellingName = "\(ptLastName)\(ptFirstName)"
+    }
     let badNameBits = [" ", "-", "'", "(", ")", "\""]
     for bit in badNameBits {
         fileLabellingName = fileLabellingName.replacingOccurrences(of: bit, with: "")
@@ -139,3 +184,4 @@ func getFileLabellingName(_ name: String) -> String {
     
     return fileLabellingName
 }
+

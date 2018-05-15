@@ -57,7 +57,7 @@ class BuilderInterfaceVC: NSViewController {
         //Get the info from the date scheduled popup menu
         let ptVisitDate = visitDayView.indexOfSelectedItem
         
-        //Where to save the file
+        //Set the files save location based on the users selection
         var saveLocation = "Desktop"
         switch ptVisitDate {
         case 0:
@@ -73,14 +73,31 @@ class BuilderInterfaceVC: NSViewController {
         let formatter = DateFormatter()
         formatter.dateStyle = DateFormatter.Style.short
         
-        //Get the visit date
+        //Set the visit date
         guard let visitDate = theCurrentDate.addingDays(ptVisitDate) else { return }
         let internalVisitDate = formatter.string(from: visitDate)
         let labelDateFormatter = DateFormatter()
         labelDateFormatter.dateFormat = "yyMMdd"
         let labelVisitDate = labelDateFormatter.string(from: visitDate)
         
+        //Search for PTVN from last visit
+            //Set the search directory to the PTVN folder
+        let originFolderURL = URL(fileURLWithPath: "\(NSHomeDirectory())/WPCMSharedFiles/zDonna Review/01 PTVN Files")
+            //Search for files with the same visit date
+        let ptvnList = originFolderURL.getFilesInDirectoryWhereNameContains(["\(currentData.lastAppointment)"])
+            //Create a the smallest likely unique version of the pt name
+            //to search with
+        let filterName = getFileLabellingNameFrom(currentData.ptName, ofType: FileLabelType.firstLast)
+            //Use that search name to filter the PTVNs whose date matched
+        let shortList = ptvnList.filter { $0.absoluteString.removingPercentEncoding!.contains(filterName) }
+            //Create an OldNoteData object from the text of the matching file
+            //and pull out just the charge information to be inserted into
+            //the saved file
+        let lastCharge = OldNoteData(fileURL: shortList[0]).oldAssessment
+        
+        
         let finalResults = """
+        #PTVNFILE#
         \(SectionDelimiters.patientNameStart.rawValue)
         \(currentData.ptName)
         \(SectionDelimiters.patientNameEnd.rawValue)
@@ -96,6 +113,10 @@ class BuilderInterfaceVC: NSViewController {
         \(SectionDelimiters.visitDateStart.rawValue)
         \(internalVisitDate)
         \(SectionDelimiters.visitDateEnd.rawValue)
+        
+        \(SectionDelimiters.ccStart.rawValue)
+        
+        \(SectionDelimiters.ccEnd.rawValue)
         
         \(SectionDelimiters.medStart.rawValue)
         \(currentData.currentMeds)
@@ -146,7 +167,7 @@ class BuilderInterfaceVC: NSViewController {
         \(SectionDelimiters.objectiveEnd.rawValue)
         
         \(SectionDelimiters.subjectiveStart.rawValue)
-        
+        Problems:\n\(lastCharge)
         \(SectionDelimiters.subjectiveEnd.rawValue)
         
         \(SectionDelimiters.planStart.rawValue)
@@ -154,23 +175,22 @@ class BuilderInterfaceVC: NSViewController {
         \(SectionDelimiters.planEnd.rawValue)
         """
         
-        //print(currentData.diagnoses)
-        finalResults.copyToPasteboard()
         
-        let fileName = "\(visitTimeView.stringValue) \(getFileLabellingName(currentData.ptName)) PTVN \(labelVisitDate).txt"
-        //print(fileName)
-        //Creates a file with the final output on the desktop
+        //finalResults.copyToPasteboard()
+        //Generate a properly formated name for the file from exisiting data
+        let fileName = "\(visitTimeView.stringValue) \(getFileLabellingNameFrom(currentData.ptName, ofType: FileLabelType.full)) PTVN \(labelVisitDate).txt"
+
+        //Creates a file with the final output to the chosen location
         let ptvnData = finalResults.data(using: String.Encoding.utf8)
         let newFileManager = FileManager.default
         let savePath = NSHomeDirectory()
         newFileManager.createFile(atPath: "\(savePath)/\(saveLocation)/\(fileName)", contents: ptvnData, attributes: nil)
         
-        
     }
 
 }
 
-
+//The delimiters used to separate the data sections in the file
 enum SectionDelimiters:String {
     case patientNameStart = "#PATIENTNAME"
     case patientNameEnd = "PATIENTNAME#"
