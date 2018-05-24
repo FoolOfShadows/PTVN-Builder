@@ -93,7 +93,10 @@ class BuilderInterfaceVC: NSViewController {
             //Create an OldNoteData object from the text of the matching file
             //and pull out just the charge information to be inserted into
             //the saved file
-        let lastCharge = OldNoteData(fileURL: shortList[0]).oldAssessment
+        var lastCharge = "Last PTVN not found."
+        if shortList.count > 0 {
+            lastCharge = OldNoteData(fileURL: shortList[0]).oldAssessment
+        }
         
         
         let finalResults = """
