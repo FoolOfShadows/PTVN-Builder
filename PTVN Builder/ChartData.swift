@@ -114,7 +114,12 @@ struct OldNoteData {
     var fileURL:URL
     private var theText:String { return fileURL.getTextFromFile() }
     private let lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
-    var oldAssessment:String { return theText.simpleRegExMatch(lastCharge).cleanTheTextOf(lastChargeBadBits) }
+    var oldAssessment:String {
+        var problem = theText.simpleRegExMatch(lastCharge).cleanTheTextOf(lastChargeBadBits)
+        let levelBit = problem.simpleRegExMatch("Lvl.*\\(done dmw\\)")
+        problem = problem.replacingOccurrences(of: levelBit, with: "")
+        return problem
+    }
 }
 
 //Choices to pass into the getFileLabellingNameFrom function
