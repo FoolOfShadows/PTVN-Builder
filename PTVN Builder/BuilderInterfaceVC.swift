@@ -98,25 +98,31 @@ class BuilderInterfaceVC: NSViewController {
         
         let finalResults = """
         #PTVNFILE#
-        \(SectionDelimiters.patientNameStart.rawValue)
-        \(currentData.ptName)
-        \(SectionDelimiters.patientNameEnd.rawValue)
+        \(SectionDelimiters.planStart.rawValue)
         
-        \(SectionDelimiters.patientDOBStart.rawValue)
-        \(currentData.ptDOB)
-        \(SectionDelimiters.patientDOBEnd.rawValue)
+        \(SectionDelimiters.planEnd.rawValue)
         
-        \(SectionDelimiters.patientAgeStart.rawValue)
-        \(currentData.ptAge)
-        \(SectionDelimiters.patientAgeEnd.rawValue)
+        \(SectionDelimiters.assessmentStart.rawValue)
         
-        \(SectionDelimiters.visitDateStart.rawValue)
-        \(internalVisitDate)
-        \(SectionDelimiters.visitDateEnd.rawValue)
+        \(SectionDelimiters.assessmentEND.rawValue)
+        
+        \(SectionDelimiters.objectiveStart.rawValue)
+        
+        \(SectionDelimiters.objectiveEnd.rawValue)
         
         \(SectionDelimiters.ccStart.rawValue)
         
         \(SectionDelimiters.ccEnd.rawValue)
+        
+        \(SectionDelimiters.subjectiveStart.rawValue)
+        Problems**
+        \(lastCharge)
+        *problems*
+        \(SectionDelimiters.subjectiveEnd.rawValue)
+        
+        \(SectionDelimiters.rosStart.rawValue)
+        
+        \(SectionDelimiters.rosEnd.rawValue)
         
         \(SectionDelimiters.medStart.rawValue)
         \(currentData.currentMeds)
@@ -154,25 +160,21 @@ class BuilderInterfaceVC: NSViewController {
         \(currentData.diagnoses)
         \(SectionDelimiters.diagnosisEnd.rawValue)
         
-        \(SectionDelimiters.rosStart.rawValue)
+        \(SectionDelimiters.patientNameStart.rawValue)
+        \(currentData.ptName)
+        \(SectionDelimiters.patientNameEnd.rawValue)
         
-        \(SectionDelimiters.rosEnd.rawValue)
+        \(SectionDelimiters.patientDOBStart.rawValue)
+        \(currentData.ptDOB)
+        \(SectionDelimiters.patientDOBEnd.rawValue)
         
-        \(SectionDelimiters.assessmentStart.rawValue)
+        \(SectionDelimiters.patientAgeStart.rawValue)
+        \(currentData.ptAge)
+        \(SectionDelimiters.patientAgeEnd.rawValue)
         
-        \(SectionDelimiters.assessmentEND.rawValue)
-        
-        \(SectionDelimiters.objectiveStart.rawValue)
-        
-        \(SectionDelimiters.objectiveEnd.rawValue)
-        
-        \(SectionDelimiters.subjectiveStart.rawValue)
-        Problems:\n\(lastCharge)
-        \(SectionDelimiters.subjectiveEnd.rawValue)
-        
-        \(SectionDelimiters.planStart.rawValue)
-        
-        \(SectionDelimiters.planEnd.rawValue)
+        \(SectionDelimiters.visitDateStart.rawValue)
+        \(internalVisitDate)
+        \(SectionDelimiters.visitDateEnd.rawValue)
         """
         
         
