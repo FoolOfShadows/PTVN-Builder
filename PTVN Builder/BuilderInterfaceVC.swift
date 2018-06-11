@@ -94,8 +94,10 @@ class BuilderInterfaceVC: NSViewController {
             //and pull out just the charge information to be inserted into
             //the saved file
         var lastCharge = "Last PTVN not found."
+        var pharmacy = String()
         if shortList.count > 0 {
             lastCharge = OldNoteData(fileURL: shortList[0]).oldAssessment
+            pharmacy = OldNoteData(fileURL: shortList[0]).pharmacy
         }
         
         
@@ -104,6 +106,10 @@ class BuilderInterfaceVC: NSViewController {
         \(SectionDelimiters.planStart.rawValue)
         
         \(SectionDelimiters.planEnd.rawValue)
+        
+        \(SectionDelimiters.pharmacyStart.rawValue)
+        \(pharmacy)
+        \(SectionDelimiters.pharmacyEnd.rawValue)
         
         \(SectionDelimiters.assessmentStart.rawValue)
         
@@ -239,6 +245,8 @@ enum SectionDelimiters:String {
     case rosEnd = "ROS#"
     case visitDateStart = "#VISITDATE"
     case visitDateEnd = "VISITDATE#"
+    case pharmacyStart = "#PHARMACY"
+    case pharmacyEnd = "PHARMACY#"
     case otherStart = "#OTHER"
     case otherEnd = "OTHER#"
 }

@@ -48,6 +48,7 @@ struct ChartData {
         case psh = "(?s)(Major events).*(Ongoing medical problems)"
         case preventive = "(?s)(Preventive care).*((?<=)Social history)"
         case lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
+        case pharmacy = "(?s)#PHARMACY.*PHARMACY#"
     }
     
     //Get the name, age, and DOB from the text
@@ -113,11 +114,20 @@ struct ChartData {
 struct OldNoteData {
     var fileURL:URL
     private var theText:String { return fileURL.getTextFromFile() }
-    private let lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
+    private let lastChargeOld = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
+    private let lastChargeNew = "(?s)(Problems\\*\\*).*(\\*problems\\*)"
+    var pharmacy:String { return theText.simpleRegExMatch(ChartData.Regexes.pharmacy.rawValue).cleanTheTextOf(["#PHARMACY", "PHARMACY#"])}
     var oldAssessment:String {
-        var problem = theText.simpleRegExMatch(lastCharge).cleanTheTextOf(lastChargeBadBits)
+        var problem = String()
+        if theText.contains("#PTVNFILE#") {
+            problem = theText.simpleRegExMatch(lastChargeNew).cleanTheTextOf(lastChargeBadBits)
+            let levelBit = problem.simpleRegExMatch("Lvl.*\\(done dmw\\)")
+            problem = problem.replacingOccurrences(of: levelBit, with: "")
+        } else {
+        problem = theText.simpleRegExMatch(lastChargeOld).cleanTheTextOf(lastChargeBadBits)
         let levelBit = problem.simpleRegExMatch("Lvl.*\\(done dmw\\)")
         problem = problem.replacingOccurrences(of: levelBit, with: "")
+        }
         return problem
     }
 }
