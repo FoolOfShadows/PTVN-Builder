@@ -19,6 +19,7 @@
 		79A9D83A20CEEAE2007144B0 /* PF Summary.png in Resources */ = {isa = PBXBuildFile; fileRef = 79A9D83920CEEAE2007144B0 /* PF Summary.png */; };
 		79A9D83C20CEEAF7007144B0 /* Ellipsis.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 79A9D83B20CEEAF7007144B0 /* Ellipsis.jpg */; };
 		79A9D83E20CEEB5B007144B0 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79A9D83D20CEEB5B007144B0 /* StringExtensions.swift */; };
+		79F7C91620F651F900D45227 /* NoteMedsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 79F7C91520F651F900D45227 /* NoteMedsVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -37,6 +38,7 @@
 		79A9D83920CEEAE2007144B0 /* PF Summary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "PF Summary.png"; sourceTree = "<group>"; };
 		79A9D83B20CEEAF7007144B0 /* Ellipsis.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Ellipsis.jpg; sourceTree = "<group>"; };
 		79A9D83D20CEEB5B007144B0 /* StringExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
+		79F7C91520F651F900D45227 /* NoteMedsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoteMedsVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +74,7 @@
 				796150BB205842EC00EC8D08 /* AppDelegate.swift */,
 				796150D32058464100EC8D08 /* BuilderInterfaceVC.swift */,
 				796150DF20584FD700EC8D08 /* ChartData.swift */,
+				79F7C91520F651F900D45227 /* NoteMedsVC.swift */,
 				79A9D83720CEEA96007144B0 /* Constants.swift */,
 				796150BF205842ED00EC8D08 /* Assets.xcassets */,
 				796150C1205842ED00EC8D08 /* Main.storyboard */,
@@ -171,6 +174,7 @@
 				796150D42058464100EC8D08 /* BuilderInterfaceVC.swift in Sources */,
 				796150BC205842EC00EC8D08 /* AppDelegate.swift in Sources */,
 				796150E020584FD700EC8D08 /* ChartData.swift in Sources */,
+				79F7C91620F651F900D45227 /* NoteMedsVC.swift in Sources */,
 				79A9D83820CEEA96007144B0 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

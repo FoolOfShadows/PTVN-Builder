@@ -9,10 +9,16 @@
 import Cocoa
 import Quartz
 
-class BuilderInterfaceVC: NSViewController {
+protocol ptvnDelegate: class {
+    var currentData:ChartData { get set }
+}
+
+class BuilderInterfaceVC: NSViewController, ptvnDelegate {
 
     @IBOutlet weak var visitTimeView: NSTextField!
     @IBOutlet weak var visitDayView: NSPopUpButton!
+    
+    var currentData = ChartData(chartData: "")
     
     //let previewController = QLPreviewPanel()
     override func viewDidLoad() {
@@ -52,7 +58,7 @@ class BuilderInterfaceVC: NSViewController {
         }
         
         //Create a ChartData struct with the clipboard data
-        let currentData = ChartData(chartData: theText)
+        currentData = ChartData(chartData: theText)
         
         //Get the info from the date scheduled popup menu
         let ptVisitDate = visitDayView.indexOfSelectedItem
@@ -197,6 +203,19 @@ class BuilderInterfaceVC: NSViewController {
         let savePath = NSHomeDirectory()
         newFileManager.createFile(atPath: "\(savePath)/\(saveLocation)/\(fileName)", contents: ptvnData, attributes: nil)
         
+    }
+    
+    func processInitialPFData() {
+        
+    }
+    
+    override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
+        if segue.identifier?.rawValue == "showNoteMeds" {
+            if let toViewController = segue.destinationController as? NoteMedsVC {
+                toViewController.currentPTVNDelegate = self
+                toViewController.currentData = currentData
+            }
+        }
     }
 
 }
