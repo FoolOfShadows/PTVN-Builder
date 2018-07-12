@@ -10,7 +10,7 @@ import Foundation
 
 let dxBadBits = ["Chronic diagnoses", "No active Acute diagnoses.", "Acute diagnoses", "Diagnoses", "Social history", "Term", "Show by", "ICD-10"]
 
-let medBadBits = ["Medications", "Encounters", " Show historical"]
+let medBadBits = ["Medications", "Encounters", " Show historical \\(\\d.\\)"]
 
 let nutritionBadBits = ["Nutrition history", "Advanced directives", "Developmental history"]
 
@@ -29,6 +29,8 @@ let pshBadBits = ["Major events", "Ongoing medical problems", "PSH:", "PHS:"]
 let pmhBadBits = ["Ongoing medical problems", "Allergies \\(free text\\)", "Allergies", "PMH:", "PHM:", "Preventive care", "Family health history"]
 
 let lastChargeBadBits = ["A\\(Charge\\):", "Problems\\*\\*", "\\*problems\\*", "#ASSESSMENT", "ASSESSMENT#"]
+
+let newMedsBadBits = ["Medications attached to this encounter:", "Orders Print", "    •    "]
 
 let visitBoilerplateText = "CC:  \nProblems:  \n\n\nS:  \n\nLocation:  \nSeverity:  \nQuality:  \nDuration:  \nTiming:  \nContext:  \nModifying factors:  \nAssociated symptoms:  \n\n\nNEW PMH:  \n\n\nA(Charge):  \n\n\nP(lan):  \n\n**Rx**  \n\n\nO(PE):  \n\n\n"
 

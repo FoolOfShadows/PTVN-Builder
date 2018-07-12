@@ -13,11 +13,12 @@ struct ChartData {
     //This string will be populated later with data on the clipboard pulled from PF
     var chartData = String()
     
+    
     //Use closures to populate the relevant vars with the desired data copied from PF
     var ptName: String {return nameAgeDOB(chartData).0}
     var ptDOB: String {return nameAgeDOB(chartData).2}
     var ptAge: String {return nameAgeDOB(chartData).1}
-    var currentMeds: String {return chartData.simpleRegExMatch(Regexes.medications.rawValue).cleanTheTextOf(medBadBits).addCharacterToBeginningOfEachLine("- ")}
+    var currentMeds: String {return chartData.simpleRegExMatch(Regexes.medications.rawValue).cleanTheTextOf(medBadBits).addCharacterToBeginningOfEachLine("-")}
     var diagnoses: String {return chartData.simpleRegExMatch(Regexes.diagnoses.rawValue).cleanTheTextOf(dxBadBits)}
     var allergies: String {return chartData.simpleRegExMatch(Regexes.allergies.rawValue).cleanTheTextOf(basicAllergyBadBits)}
     var nutritionalHistory: String { var theRegex = ""
@@ -49,6 +50,7 @@ struct ChartData {
         case preventive = "(?s)(Preventive care).*((?<=)Social history)"
         case lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
         case pharmacy = "(?s)#PHARMACY.*PHARMACY#"
+        case newMeds = "(?s)Medications attached to this encounter:.*Orders Print"
     }
     
     //Get the name, age, and DOB from the text
@@ -122,13 +124,16 @@ struct OldNoteData {
         var problem = String()
         if theText.contains("#PTVNFILE#") {
             problem = theText.simpleRegExMatch(lastChargeNew).cleanTheTextOf(lastChargeBadBits)
-            let levelBit = problem.simpleRegExMatch("Lvl.*\\(done dmw\\)")
-            problem = problem.replacingOccurrences(of: levelBit, with: "")
+//            let levelBit = problem.simpleRegExMatch("Lvl.*\\(done dmw\\)")
+//            problem = problem.replacingOccurrences(of: levelBit, with: "")
         } else {
         problem = theText.simpleRegExMatch(lastChargeOld).cleanTheTextOf(lastChargeBadBits)
-        let levelBit = problem.simpleRegExMatch("Lvl.*\\(done dmw\\)")
-        problem = problem.replacingOccurrences(of: levelBit, with: "")
+//        let levelBit = problem.simpleRegExMatch("Lvl.*\\(done dmw\\)")
+//        problem = problem.replacingOccurrences(of: levelBit, with: "")
         }
+        let levelBit = problem.simpleRegExMatch("(?s)Lvl.*\\(done dmw\\)")
+        problem = problem.replacingOccurrences(of: levelBit, with: "")
+        problem = problem.cleanTheTextOf(lastChargeBadBits)
         return problem
     }
 }

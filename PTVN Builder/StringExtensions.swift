@@ -74,6 +74,15 @@ extension String {
         return self.trimmingCharacters(in: NSCharacterSet.whitespacesAndNewlines)
     }
     
+    func replaceRegexPattern(_ pattern:String, with goodBit:String) -> String {
+        let regex = try? NSRegularExpression(pattern: pattern)
+        if let results = regex?.stringByReplacingMatches(in: self, options: [], range: NSRange(location: 0,length: self.count), withTemplate: goodBit) {
+            return results
+        }
+        
+        return ""
+    }
+    
     //Clean extraneous text from the sections
     func cleanTheTextOf(_ badBits:[String]) -> String {
         var cleanedText = self.removeWhiteSpace()
@@ -85,6 +94,12 @@ extension String {
         //let cleanedArray = cleanedText.components(separatedBy: "\n").filter {!$0.ranges(of: "[a-zA-Z0-9]", options: .regularExpression).isEmpty}
         cleanedText = cleanedArray.joined(separator: "\n").trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
         return cleanedText
+    }
+    
+    func convertListToArray() -> [String] {
+        let baseArray = self.components(separatedBy: "\n")
+        //let newArray = baseArray.map { $0.cleanTheTextOf(["-  "]) }
+        return baseArray
     }
 	
 	func removeRegexCharactersFromString() -> String {
@@ -110,7 +125,7 @@ extension String {
         var newTextArray = [String]()
         let textArray = self.components(separatedBy: "\n")
         for line in textArray {
-            newTextArray.append("- \(line)")
+            newTextArray.append("\(theCharacter) \(line)")
         }
         
         return newTextArray.joined(separator: "\n")
