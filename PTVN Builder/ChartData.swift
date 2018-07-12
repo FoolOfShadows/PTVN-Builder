@@ -115,7 +115,8 @@ struct OldNoteData {
     var fileURL:URL
     private var theText:String { return fileURL.getTextFromFile() }
     private let lastChargeOld = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
-    private let lastChargeNew = "(?s)(Problems\\*\\*).*(\\*problems\\*)"
+    private let lastChargeNew = "(?s)#ASSESSMENT.*ASSESSMENT#"
+    //private let lastChargeNew = "(?s)(Problems\\*\\*).*(\\*problems\\*)"
     var pharmacy:String { return theText.simpleRegExMatch(ChartData.Regexes.pharmacy.rawValue).cleanTheTextOf(["#PHARMACY", "PHARMACY#"])}
     var oldAssessment:String {
         var problem = String()
@@ -128,6 +129,7 @@ struct OldNoteData {
         let levelBit = problem.simpleRegExMatch("Lvl.*\\(done dmw\\)")
         problem = problem.replacingOccurrences(of: levelBit, with: "")
         }
+        problem = problem.cleanTheTextOf(lastChargeBadBits)
         return problem
     }
 }
