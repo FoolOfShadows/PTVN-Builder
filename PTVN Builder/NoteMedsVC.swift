@@ -65,7 +65,7 @@ class NoteMedsVC: NSViewController {
         
         //Set the visit date
         guard let visitDate = theCurrentDate.addingDays(ptVisitDate) else { return }
-        print("Days out: \(ptVisitDate)")
+        //print("Days out: \(ptVisitDate)")
         let internalVisitDate = formatter.string(from: visitDate)
         let labelDateFormatter = DateFormatter()
         labelDateFormatter.dateFormat = "yyMMdd"
@@ -76,6 +76,7 @@ class NoteMedsVC: NSViewController {
         let originFolderURL = URL(fileURLWithPath: "\(NSHomeDirectory())/WPCMSharedFiles/zDonna Review/01 PTVN Files")
         //Search for files with the same visit date
         let ptvnList = originFolderURL.getFilesInDirectoryWhereNameContains(["\(currentData.lastAppointment)"])
+        //print(ptvnList)
         //Create a the smallest likely unique version of the pt name
         //to search with
         let filterName = getFileLabellingNameFrom(currentData.ptName, ofType: FileLabelType.firstLast)

@@ -24,7 +24,7 @@ struct ChartData {
     var nutritionalHistory: String { var theRegex = ""
                                     if chartData.contains("Developmental history") {
                                     theRegex = Regexes.nutrition1.rawValue
-                                        print("Found Dev Hx")
+                                        //print("Found Dev Hx")
                                     } else { theRegex = Regexes.nutrition2.rawValue}
                                     return chartData.simpleRegExMatch(theRegex).cleanTheTextOf(nutritionBadBits)}
     var socialHistory: String {return chartData.simpleRegExMatch(Regexes.social.rawValue).cleanTheTextOf(socialBadBits)}
@@ -51,6 +51,7 @@ struct ChartData {
         case lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
         case pharmacy = "(?s)#PHARMACY.*PHARMACY#"
         case newMeds = "(?s)Medications attached to this encounter:.*Orders Print"
+        case oldWeight = "Wt:.*lb;\\s*Ht:"
     }
     
     //Get the name, age, and DOB from the text
@@ -97,7 +98,9 @@ struct ChartData {
         //print(baseSection)
         guard let encountersSection = baseSection.findRegexMatchBetween("Encounters", and: "Messages") else {return ""}
         //print(encountersSection)
-        let activeEncounters = encountersSection.ranges(of: "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)", options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded")}
+        let dateToDateRegex = "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)"
+        let dateToEndOfCCLine = "(?m)(\\d./\\d./\\d*)(.*?)(\\n)(CC:.*)"
+        let activeEncounters = encountersSection.ranges(of: dateToEndOfCCLine, options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded") && !$0.contains("CC: Epogen inj") && !$0.contains("CC: Testosterone inj")}
         print(activeEncounters)
         if activeEncounters.count > 0 {
             let date = activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
@@ -136,6 +139,7 @@ struct OldNoteData {
         problem = problem.cleanTheTextOf(lastChargeBadBits)
         return problem
     }
+    var lastWeight:String { return theText.simpleRegExMatch(ChartData.Regexes.oldWeight.rawValue).cleanTheTextOf(["Wt:", "lb;", "Ht:"])}
 }
 
 //Choices to pass into the getFileLabellingNameFrom function

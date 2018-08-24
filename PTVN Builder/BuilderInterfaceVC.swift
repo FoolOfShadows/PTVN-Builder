@@ -67,7 +67,7 @@ class BuilderInterfaceVC: NSViewController, ptvnDelegate {
         
         //Get the info from the date scheduled popup menu
         ptVisitDate = visitDayView.indexOfSelectedItem
-        print("Day index selected: \(ptVisitDate)")
+        //print("Day index selected: \(ptVisitDate)")
         
         //Set the files save location based on the users selection
         //var saveLocation = "Desktop"
