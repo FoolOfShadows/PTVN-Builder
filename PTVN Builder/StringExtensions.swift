@@ -123,7 +123,7 @@ extension String {
     
     func addCharacterToBeginningOfEachLine(_ theCharacter:String) -> String {
         var newTextArray = [String]()
-        let textArray = self.components(separatedBy: "\n")
+        let textArray = self.components(separatedBy: "\n").filter { !$0.trimmingCharacters(in: .whitespaces).isEmpty}
         for line in textArray {
             newTextArray.append("\(theCharacter) \(line)")
         }

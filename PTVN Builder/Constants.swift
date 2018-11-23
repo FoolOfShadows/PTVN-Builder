@@ -10,7 +10,7 @@ import Foundation
 
 let dxBadBits = ["Chronic diagnoses", "No active Acute diagnoses.", "Acute diagnoses", "Diagnoses", "Social history", "Term", "Show by", "ICD-10"]
 
-let medBadBits = ["Medications", "Encounters", " Show historical \\(\\d.*\\)", "Encounter Comments.+ \\d.*/\\d.*/\\d\\d"]
+let medBadBits = ["Medications", "Encounters", " Show historical \\(\\d.*\\)", "Show historical \\(\\d.*\\)", "Encounter Comments.+ \\d.*/\\d.*/\\d\\d"]
 
 let nutritionBadBits = ["Nutrition history", "Advanced directives", "Developmental history"]
 
