@@ -51,16 +51,16 @@ class BuilderInterfaceVC: NSViewController, ptvnDelegate {
         }
         
         //Make sure the diagnosis are set to ICD-10 format
-        if !theText.contains("ICD-10") {
-            //Create an alert to let the user know the diagnoses are not set to ICD10
-            print("Not set to ICD10")
-            //After notifying the user, break out of the program
-            let theAlert = NSAlert()
-            theAlert.messageText = "It appears Practice Fusion is not set to show ICD-10 diagnoses codes.  Please set the Show by option in the Diagnoses section to ICD-10 and try again."
-            theAlert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
-                _ = NSModalResponse
-            }
-        }
+//        if !theText.contains("ICD-10") {
+//            //Create an alert to let the user know the diagnoses are not set to ICD10
+//            print("Not set to ICD10")
+//            //After notifying the user, break out of the program
+//            let theAlert = NSAlert()
+//            theAlert.messageText = "It appears Practice Fusion is not set to show ICD-10 diagnoses codes.  Please set the Show by option in the Diagnoses section to ICD-10 and try again."
+//            theAlert.beginSheetModal(for: self.view.window!) { (NSModalResponse) -> Void in
+//                _ = NSModalResponse
+//            }
+//        }
         
         //Create a ChartData struct with the clipboard data
         currentData = ChartData(chartData: theText)

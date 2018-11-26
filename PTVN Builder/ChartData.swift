@@ -37,17 +37,17 @@ struct ChartData {
     
     //The regular expressions used to define the desired sections of the text
     enum Regexes:String {
-        case social = "(?s)(Social history).*((?<=)Past medical history)"
-        case family1 = "(?s)(Family health history).*(Preventive care)"
+        case social = "(?s)(Social history).*((?<=)Nutrition history)"/*"(?s)(Social history).*((?<=)Past medical history)"*/
+        case family1 = "(?s)(Family health history).*(Past medical history)"/*"(?s)(Family health history).*(Preventive care)"*/
         case family2 = "(?s)(Family health history).*(Social history)"
-        case nutrition1 = "(?s)(Nutrition history).*((?<=)Developmental history)"
+        case nutrition1 = "(?s)(Nutrition history).*((?<=)Family health history)"/*"(?s)(Nutrition history).*((?<=)Developmental history)"*/
         case nutrition2 = "(?s)(Nutrition history).*((?<=)Allergies\\n)"
-        case diagnoses = "(?s)Diagnoses.*Social history*?\\s(?=\\nSmoking status*?\\s)"
-        case medications = "(?s)\\nMedications*\\s+?\\n.*Encounters"
-        case allergies = "(?s)(\\nAllergies\\n).*(\\nMedications)"
-        case pmh = "(?s)(Ongoing medical problems).*(Family health history)"
+        case diagnoses = "(?s)Diagnoses.*Social\\shistory(?!\\s\\(free\\stext\\))"/*"(?s)Diagnoses.*Social history*?\\s(?=\\nSmoking status*?\\s)"*/
+        case medications = "(?s)\\nMedications*\\s+?\\n.*Screenings/ Interventions" /*"(?s)\\nMedications*\\s+?\\n.*Encounters"*/
+        case allergies = "(?s)Developmental history\\n.*(\\nMedications)" /*"(?s)(\\nAllergies\\n).*(\\nMedications)"*/
+        case pmh = "(?s)(Ongoing medical problems).*(Preventive care)" /*"(?s)(Ongoing medical problems).*(Family health history)"*/
         case psh = "(?s)(Major events).*(Ongoing medical problems)"
-        case preventive = "(?s)(Preventive care).*((?<=)Social history)"
+        case preventive = "(?s)(Preventive care).*Developmental history" /*"(?s)(Preventive care).*((?<=)Social history)"*/
         case lastCharge = "(?s)(A\\(Charge\\):).*(Lvl.*\\(done dmw\\))"
         case pharmacy = "(?s)#PHARMACY.*PHARMACY#"
         case newMeds = "(?s)Medications attached to this encounter:.*Orders Print"
@@ -100,7 +100,7 @@ struct ChartData {
         //print(encountersSection)
         let dateToDateRegex = "(?s)(\\d./\\d./\\d*)(.*?)(\\n)(?=\\d./\\d./\\d*)"
         let dateToEndOfCCLine = "(?m)(\\d./\\d./\\d*)(.*?)(\\n)(CC:.*)"
-        let activeEncounters = encountersSection.ranges(of: dateToEndOfCCLine, options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded") && !$0.contains("CC: Epogen inj") && !$0.contains("CC: Testosterone inj")}
+        let activeEncounters = encountersSection.ranges(of: dateToEndOfCCLine, options: .regularExpression).map{encountersSection[$0]}.map{String($0)}.filter {!$0.contains("No chief complaint recorded") && !$0.contains("CC: Epogen inj") && !$0.contains("CC: Testosterone inj") && !$0.contains("CC: Flu inj")}
         print(activeEncounters)
         if activeEncounters.count > 0 {
             let date = activeEncounters[0].simpleRegExMatch("\\d./\\d./\\d*")
