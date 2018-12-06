@@ -18,7 +18,7 @@ let socialBadBits = ["Past medical history", "Social history \\(free text\\)", "
 
 let fmhBadBits = ["Family health history", "Preventive care", "Social history", "Past medical history"]
 
-let basicAllergyBadBits = ["Drug allergies", "Environmental allergies", "No environmental allergies recorded", "Food allergies", "Allergies\\n", "Medications(\\s{2,}|\\n|$)", "You have previously recorded allergies in a free-text note", "To receive interaction alerts, record the note in a structured format here. Record",  "\\(free-text note\\) Delete", "Environmental Allergies: No Known Environmental Allergies", "Developmental history\\n"]
+let basicAllergyBadBits = ["Drug allergies", "Environmental allergies", "No environmental allergies recorded", "Food allergies", "Allergies\\n", "Medications(\\s{2,}|\\n|$)", "You have previously recorded allergies in a free-text note", "To receive interaction alerts, record the note in a structured format here. Record",  "\\(free-text note\\) Delete", "Environmental Allergies: No Known Environmental Allergies", "Developmental history\\n", "Developmental history \\n", "No developmental history recorded"]
 
 let freeAllergyBadBits = ["Allergies \\(free text\\)", "ALLERGIES:", "ALLERGIES", "Use structured allergies to receive interaction alerts", "Food allergies:", "Food Allergies:", "Food Allergies", "Food allergies", "Food Allergies", "Environmental allergies:", "Environmental allergies: ", "Environmental allergies", "Environmental Allergies", "Drug allergies:", "Drug allergies-", "Drug allergies", "No Known Drug Allergies", "No Known", "Drug Allergies:", "Drug Allergies", "Family health history", "Preventive care", "No food allergies recorded\n", "Allergies"]
 
